@@ -1,13 +1,13 @@
 package pizza.topping;
+
+/**
+ * {@code SausageTopping} represents sausage-based topping meat
+ */
 public class SausageTopping extends MeatTopping {
-	// public Float getPrice() {
-		// return this.price;
-	// }
-	
-	// public void setPrice(Float price) {
-		// this.price = price;
-	// }
-	
+
+	/**
+	 * {@code SausageTopping} is twice as spicy as other meats, so spciness level needs to be doubled.
+	 */
 	public void adjustSpiciness() {
 		spiciness = spiciness * 2;
 	}

@@ -13,6 +13,9 @@ import pizza.topping.PepperTopping;
 import pizza.topping.PepperoniTopping;
 import pizza.topping.SausageTopping;
 
+/**
+ * This is the driver class for assembling a pizza from crust, sauce and toppings
+ */
 public class PizzaMain {
 	private Pizza pizza;
 	private Scanner input;
@@ -165,6 +168,9 @@ public class PizzaMain {
 		System.out.printf("%s $%.2f\n", pizza.toNiceString(), pizza.getPrice());
 	}
 	
+	/**
+	 * Solicit user inputs regarding pizza preferences
+	 */
 	public void runMenu() {
 		inputCrustChoice();
 		inputSauceChoice();

@@ -1,5 +1,12 @@
 package pizza.topping;
+
+/**
+ * {@code MeatTopping} represents all possible meat toppings that can go on a pizza
+ */
 public class MeatTopping extends PizzaTopping {
+	/**
+	 * Meat toppings can vary in spiciness from 1-10.
+	 */
 	protected Integer spiciness;
 
 	public MeatTopping() {
@@ -22,6 +29,9 @@ public class MeatTopping extends PizzaTopping {
 		this.spiciness = spiciness;
 	}
 	
+	/**
+	 * For meat toppings we also want to output the spiciness.
+	 */
 	@Override
 	public String toNiceString() {
 		return super.toNiceString() + " spiciness: " + spiciness;
