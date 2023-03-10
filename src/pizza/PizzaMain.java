@@ -159,7 +159,7 @@ public class PizzaMain {
 	}
 	
 	private void showPizza() {
-		pizza.display();
+		pizza.displaySorted();
 		System.out.println(pizza.getCrust().checkIntegrity());
 		System.out.println("----");
 		System.out.printf("%s $%.2f\n", pizza.toNiceString(), pizza.getPrice());

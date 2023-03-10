@@ -1,7 +1,7 @@
 package pizza.crust;
-import pizza.MenuItem;
+import pizza.AbstractMenuItem;
 
-public abstract class PizzaCrust implements MenuItem {
+public abstract class PizzaCrust extends AbstractMenuItem {
 	protected String ingredient;
 	
 	public abstract String toString(); 

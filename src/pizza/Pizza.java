@@ -1,21 +1,22 @@
 package pizza;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import pizza.crust.PizzaCrust;
 import pizza.sauce.PizzaSauce;
 import pizza.topping.PizzaTopping;
 
-public class Pizza implements MenuItem {
+public class Pizza extends AbstractMenuItem {
 	private PizzaCrust crust;
 	private PizzaSauce sauce;
 	private ArrayList<PizzaTopping> toppingList;
-	private ArrayList<MenuItem> pizzaComponents;
+	private ArrayList<AbstractMenuItem> pizzaComponents;
 	
 	public Pizza() {
 		this.crust = null;
 		this.sauce = null;
 		this.toppingList = new ArrayList<PizzaTopping>();
-		this.pizzaComponents = new ArrayList<MenuItem>();
+		this.pizzaComponents = new ArrayList<AbstractMenuItem>();
 	}
 
 	public PizzaCrust getCrust() {
@@ -50,11 +51,11 @@ public class Pizza implements MenuItem {
 		this.addComponent(topping);
 	}
 
-	public ArrayList<MenuItem> getComponents() {
+	public ArrayList<AbstractMenuItem> getComponents() {
 		return this.pizzaComponents;
 	}
 
-	public void addComponent(MenuItem item) {
+	public void addComponent(AbstractMenuItem item) {
 		this.pizzaComponents.add(item);
 	}
 	
@@ -76,6 +77,10 @@ public class Pizza implements MenuItem {
 		}
 	}
 	
+	public void displaySorted() {
+		Collections.sort(this.pizzaComponents);
+		display();
+	}
 	
 	public Double getPrice() {
 		Double total = 0.0;

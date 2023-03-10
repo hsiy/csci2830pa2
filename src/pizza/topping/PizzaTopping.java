@@ -1,7 +1,7 @@
 package pizza.topping;
-import pizza.MenuItem;
+import pizza.AbstractMenuItem;
 
-public abstract class PizzaTopping  implements MenuItem {
+public abstract class PizzaTopping extends AbstractMenuItem {
 	public abstract String toString(); 
 	
 	public String toNiceString() {
