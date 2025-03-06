@@ -6,16 +6,12 @@ import pizza.crust.ThinCrust;
 import pizza.sauce.AlfredoSauce;
 import pizza.sauce.TomatoSauce;
 import pizza.topping.AsiagoTopping;
-import pizza.topping.MeatTopping;
 import pizza.topping.MozzarellaTopping;
 import pizza.topping.MushroomTopping;
 import pizza.topping.PepperTopping;
 import pizza.topping.PepperoniTopping;
 import pizza.topping.SausageTopping;
 
-/**
- * This is the driver class for assembling a pizza from crust, sauce and toppings
- */
 public class PizzaMain {
 	private Pizza pizza;
 	private Scanner input;
@@ -27,28 +23,23 @@ public class PizzaMain {
 	
 	private void inputCrustChoice() {
 		Boolean validChoice = false;
+		Integer choice = 0;
+		ThickCrust thickCrust = null;
+		
 		System.out.println("What kind of crust would you like:");
 		System.out.println("1 - Thin Crust");
 		System.out.println("2 - Thick Crust");
 		System.out.print("Your choice: ");
 		while (!validChoice) {
-			Integer choice = input.nextInt();
+			choice = input.nextInt();
 			switch(choice) {
 				case 1: 
 					pizza.setCrust(new ThinCrust());
 					validChoice = true;
 					break;
 				case 2: 
-					ThickCrust tc = new ThickCrust();
-					System.out.print("Deep dish (Y/N)? ");
-					String yn = input.next();
-					if (yn.toUpperCase().substring(0,1).equals("Y")) {
-						System.out.println("Deep dish! good choice!");
-						tc.setIsDeepDish(true);
-					} else {
-						tc.setIsDeepDish(false);
-					}
-					pizza.setCrust(tc);
+					thickCrust = new ThickCrust();
+					pizza.setCrust(thickCrust);
 					validChoice = true;
 					break;
 				default:
@@ -56,14 +47,14 @@ public class PizzaMain {
 			}
 		}
 		
-		System.out.println("Select dough type:");
+		System.out.println("Select crust ingredient:");
 		System.out.println("1 - Flour");
 		System.out.println("2 - Cauliflower");
 		System.out.print("Your choice: ");
 		validChoice = false;
 		while (!validChoice) {
-			Integer choice = input.nextInt();
-			switch(choice) {
+			Integer ingChoice = input.nextInt();
+			switch(ingChoice) {
 				case 1: 
 					pizza.getCrust().setIngredient("Flour");
 					validChoice = true;
@@ -76,6 +67,32 @@ public class PizzaMain {
 					System.out.println("Pick between 1-2");
 			}
 		}
+		
+		// ask about deep dish option if ThickCrust 
+		if (choice == 2) {
+			System.out.print("Deep Dish? (Y/N)");
+			validChoice = false;
+			while (!validChoice) {
+				String deepDishChoice = input.next();
+				switch(deepDishChoice) {
+					case "Y": 
+					case "y":
+						thickCrust.setIsDeepDish(true);
+						validChoice = true;
+						break;
+					case "N": 
+					case "n":
+						thickCrust.setIsDeepDish(false);
+						validChoice = true;
+						break;
+					default:
+						System.out.println("Pick between Y or N");
+				}
+			}
+			
+		}
+			
+
 	}
 
 	private void inputSauceChoice() {
@@ -101,20 +118,6 @@ public class PizzaMain {
 		}
 	}
 
-	private MeatTopping getMeatToppingDetails(MeatTopping m) {
-		Integer spiciness = 0;
-		Boolean validChoice = false;
-		while (!validChoice) {
-			System.out.print("Spiciness level (1-10): ");
-			spiciness = input.nextInt();
-			if (spiciness >= 1 && spiciness <= 10) {
-				m.setSpiciness(spiciness);
-				validChoice = true;
-			}
-		}
-		return m;
-	}
-	
 	private void inputToppingChoices() {
 		System.out.print("How many toppings? ");
 		Integer numToppings = input.nextInt();
@@ -131,11 +134,11 @@ public class PizzaMain {
 				Integer choice = input.nextInt();
 				switch(choice) {
 					case 1: 
-						pizza.addTopping(getMeatToppingDetails(new PepperoniTopping()));
+						pizza.addTopping(new PepperoniTopping());
 						validChoice = true;
 						break;
 					case 2: 
-						pizza.addTopping(getMeatToppingDetails(new SausageTopping()));
+						pizza.addTopping(new SausageTopping());
 						validChoice = true;
 						break;
 					case 3: 
@@ -162,15 +165,11 @@ public class PizzaMain {
 	}
 	
 	private void showPizza() {
-		pizza.displaySorted();
+		pizza.sortItems();
+		pizza.displayItems();
 		System.out.println(pizza.getCrust().checkIntegrity());
-		System.out.println("----");
-		System.out.printf("%s $%.2f\n", pizza.toNiceString(), pizza.getPrice());
 	}
 	
-	/**
-	 * Solicit user inputs regarding pizza preferences
-	 */
 	public void runMenu() {
 		inputCrustChoice();
 		inputSauceChoice();
@@ -181,5 +180,6 @@ public class PizzaMain {
 	public static void main(String[] args) {
 		PizzaMain pm = new PizzaMain();
 		pm.runMenu();
+
 	}
 }

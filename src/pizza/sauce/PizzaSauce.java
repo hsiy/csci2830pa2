@@ -1,17 +1,17 @@
 package pizza.sauce;
-import pizza.AbstractMenuItem;
 
-/**
- * {@code PizzaSauce} represents all possible sauces that can go on a pizza
- */
-public abstract class PizzaSauce extends AbstractMenuItem {
+import pizza.MenuItem;
+
+public abstract class PizzaSauce implements MenuItem {
 	public abstract String toString(); 
 	
 	public String toNiceString() {
-		return "Sauce is: " + toString();
+		return "Sauce: " + this.toString() + " $" + this.getPrice();
 	}
-
+	
+	@Override
 	public Double getPrice() {
-		return 0.30; // default price for sauce
+		return 0.25;
 	}
+	
 }

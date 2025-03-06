@@ -1,12 +1,5 @@
 package pizza.crust;
-
-/**
- * {@code ThickCrust} represents thick pizza crusts.
- */
 public class ThickCrust extends PizzaCrust {
-	/**
-	 * Thick crust pizza has a deep dish option.
-	 */
 	private Boolean isDeepDish;
 	
 	@Override
@@ -14,30 +7,24 @@ public class ThickCrust extends PizzaCrust {
 		return "Thick Crust";
 	}
 	
-	public Boolean getIsDeepDish() {
-		return isDeepDish;
-	}
-	
-	public void setIsDeepDish(Boolean deep) {
-		this.isDeepDish = deep;
-	}
-	
 	@Override
 	public String toNiceString() {
-		return super.toNiceString() + (isDeepDish? " (Deep Dish)": "");
-	}	
+		return super.toNiceString() + (this.isDeepDish? " (Deep Dish)" : "");
+	}
+
 	
-	/**
-	 * Cauliflower crusts may fall apart if not handled carefully, especially for thick crusts.
-	 */
+	public Boolean getIsDeepDish() {
+		return this.isDeepDish;
+	}
+	
+	public void setIsDeepDish(Boolean isDeepDish) {
+		this.isDeepDish = isDeepDish;
+	}
+	
 	@Override
 	public String checkIntegrity() {
-		return ingredient.equals("Cauliflower")? "Handle carefully - thick cauliflower crusts might fall apart." : "";
+		return this.ingredient.equalsIgnoreCase("Cauliflower")? 
+					"Handle carefully: crust might fall apart" : 
+					super.checkIntegrity();
 	}
-
-	@Override
-	public Double getPrice() {
-		return 1.20; 
-	}
-
 }
