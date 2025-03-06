@@ -10,9 +10,9 @@ classDiagram
     class Comparable {<<interface>>}
     class PizzaMain
     class Pizza
-    class PizzaTopping
-    class PizzaSauce
-    class PizzaCrust
+    class PizzaTopping {<<abstract>>}
+    class PizzaSauce {<<abstract>>}
+    class PizzaCrust {<<abstract>>}
     class MeatTopping
     class CheeseTopping
     class VeggieTopping
