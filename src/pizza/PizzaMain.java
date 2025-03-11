@@ -21,25 +21,45 @@ public class PizzaMain {
 		input = new Scanner(System.in);
 	}
 	
+	private ThickCrust askDeepDish(ThickCrust thickCrust) {
+		System.out.print("Deep Dish? (Y/N)");
+		Boolean validChoice = false;
+		while (!validChoice) {
+			String deepDishChoice = input.next();
+			switch(deepDishChoice) {
+				case "Y": 
+				case "y":
+					thickCrust.setIsDeepDish(true);
+					validChoice = true;
+					break;
+				case "N": 
+				case "n":
+					thickCrust.setIsDeepDish(false);
+					validChoice = true;
+					break;
+				default:
+					System.out.println("Pick between Y or N");
+			}
+		}
+		return thickCrust;
+	}
+
 	private void inputCrustChoice() {
 		Boolean validChoice = false;
-		Integer choice = 0;
-		ThickCrust thickCrust = null;
 		
 		System.out.println("What kind of crust would you like:");
 		System.out.println("1 - Thin Crust");
 		System.out.println("2 - Thick Crust");
 		System.out.print("Your choice: ");
 		while (!validChoice) {
-			choice = input.nextInt();
+			Integer choice = input.nextInt();
 			switch(choice) {
 				case 1: 
 					pizza.setCrust(new ThinCrust());
 					validChoice = true;
 					break;
 				case 2: 
-					thickCrust = new ThickCrust();
-					pizza.setCrust(thickCrust);
+					pizza.setCrust(askDeepDish(new ThickCrust()));
 					validChoice = true;
 					break;
 				default:
@@ -67,31 +87,6 @@ public class PizzaMain {
 					System.out.println("Pick between 1-2");
 			}
 		}
-		
-		// ask about deep dish option if ThickCrust 
-		if (choice == 2) {
-			System.out.print("Deep Dish? (Y/N)");
-			validChoice = false;
-			while (!validChoice) {
-				String deepDishChoice = input.next();
-				switch(deepDishChoice) {
-					case "Y": 
-					case "y":
-						thickCrust.setIsDeepDish(true);
-						validChoice = true;
-						break;
-					case "N": 
-					case "n":
-						thickCrust.setIsDeepDish(false);
-						validChoice = true;
-						break;
-					default:
-						System.out.println("Pick between Y or N");
-				}
-			}
-			
-		}
-			
 
 	}
 

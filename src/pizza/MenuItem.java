@@ -5,9 +5,9 @@ public interface MenuItem extends Comparable<MenuItem> {
 
 	public default int compareTo(MenuItem otherItem) {
 		return (this.getPrice() > otherItem.getPrice()) ? 
-		-1 : 
-		( (this.getPrice() == otherItem.getPrice()) ? 
-			0 : 
-			1);
+		1 : 
+		( (this.getPrice() < otherItem.getPrice()) ? 
+			-1 : 
+			0);
 	}
 }

@@ -58,14 +58,29 @@ public class Pizza implements MenuItem {
 		this.selectionList.add(topping);
 	}
 	
-	public void display() {
-		System.out.println("Pizza: $" + this.getPrice());
-		System.out.println("    " + this.crust.toNiceString());
-		System.out.println("    " + this.sauce.toNiceString());
+	public String toNiceString() {
+		String nice = "";
+		nice = "Pizza: $" + this.getPrice();
+		nice += "    " + this.crust.toNiceString();
+		nice += "    " + this.sauce.toNiceString();
 		for (PizzaTopping t : this.toppingList) {
-			System.out.println("    " + t.toNiceString());
+			nice += "    " + t.toNiceString();
 		}
+		return nice;
 	}
+
+	public void display() {
+		System.out.println(this.toNiceString());
+	}
+
+	// public void display() {
+		// System.out.println("Pizza: $" + this.getPrice());
+		// System.out.println("    " + this.crust.toNiceString());
+		// System.out.println("    " + this.sauce.toNiceString());
+		// for (PizzaTopping t : this.toppingList) {
+			// System.out.println("    " + t.toNiceString());
+		// }
+	// }
 
 	public void displayItems() {
 		System.out.println("Pizza: $" + this.getPrice());
