@@ -7,7 +7,7 @@ import pizza.sauce.PizzaSauce;
 import pizza.topping.PizzaTopping;
 
 /**
- * Pizza represents a pizza in our application. It holds together all the usual components of pizza like
+ * {@code Pizza} represents a pizza in our application. It holds together all the usual components of pizza like
  * crust, sauce and toppings. For our application, we limit to one crust, one sauce, and multiple toppings.
  */
 public class Pizza implements MenuItem {
@@ -27,6 +27,10 @@ public class Pizza implements MenuItem {
 		return this.crust;
 	}
 
+	/**
+	 * In addition to setting crust, setCrust also adds the crust into the selectionList for future displays
+	 * @param crust the selected crust
+	 */
 	public void setCrust(PizzaCrust crust) {
 		this.crust = crust;
 		this.selectionList.add(crust);
@@ -36,6 +40,10 @@ public class Pizza implements MenuItem {
 		return this.sauce;
 	}
 
+	/**
+	 * In addition to setting sauce, setSauce also adds the sauce into the selectionList for future displays
+	 * @param sauce the selected sauce
+	 */
 	public void setSauce(PizzaSauce sauce) {
 		this.sauce = sauce;
 		this.selectionList.add(sauce);
@@ -45,8 +53,13 @@ public class Pizza implements MenuItem {
 		return this.toppingList;
 	}
 
+	/**
+	 * In addition to setting toppings, setTopping also adds the sauce into the selectionList for future displays
+	 * @param sauce the selected sauce
+	 */
 	public void setTopping(ArrayList<PizzaTopping> toppings) {
 		this.toppingList = toppings;
+		this.selectionList.addAll(toppings);
 	}
 
 	/**
@@ -58,6 +71,9 @@ public class Pizza implements MenuItem {
 		this.selectionList.add(topping);
 	}
 	
+	/**
+	 * @return a nicely formatted string describing the pizza
+	 */
 	public String toNiceString() {
 		String nice = "";
 		nice = "Pizza: $" + this.getPrice();
@@ -69,19 +85,17 @@ public class Pizza implements MenuItem {
 		return nice;
 	}
 
+	/**
+	 * Display a nicely formatted description of the pizza
+	 */
 	public void display() {
 		System.out.println(this.toNiceString());
 	}
 
-	// public void display() {
-		// System.out.println("Pizza: $" + this.getPrice());
-		// System.out.println("    " + this.crust.toNiceString());
-		// System.out.println("    " + this.sauce.toNiceString());
-		// for (PizzaTopping t : this.toppingList) {
-			// System.out.println("    " + t.toNiceString());
-		// }
-	// }
 
+	/**
+	 * Lists all pizza components
+	 */
 	public void displayItems() {
 		System.out.println("Pizza: $" + this.getPrice());
 		for (MenuItem m : this.selectionList) {
@@ -100,6 +114,9 @@ public class Pizza implements MenuItem {
 		// return totalPrice;
 	// }
 
+	/**
+	 * Compute pizza price as the sum of its parts.
+	 */
 	@Override
 	public Double getPrice() {
 		Double totalPrice = 0.0;
@@ -109,6 +126,9 @@ public class Pizza implements MenuItem {
 		return totalPrice;
 	}
 
+	/**
+	 * Sort pizza components according to price.
+	 */
 	public void sortItems() {
 		Collections.sort(this.selectionList);
 	}

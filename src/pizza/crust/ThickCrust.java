@@ -1,5 +1,12 @@
 package pizza.crust;
+
+/**
+ * {@code ThickCrust} represents thick pizza crusts.
+ */
 public class ThickCrust extends PizzaCrust {
+	/**
+	 * Thick crust pizza has a deep dish option.
+	 */
 	private Boolean isDeepDish;
 	
 	@Override
@@ -21,6 +28,10 @@ public class ThickCrust extends PizzaCrust {
 		this.isDeepDish = isDeepDish;
 	}
 	
+	/**
+	 * Cauliflower crusts may fall apart if not handled carefully, especially for thick crusts.
+	 * Issue a warning.
+	 */
 	@Override
 	public String checkIntegrity() {
 		return this.ingredient.equalsIgnoreCase("Cauliflower")? 

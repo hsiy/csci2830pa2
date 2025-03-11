@@ -12,6 +12,9 @@ import pizza.topping.PepperTopping;
 import pizza.topping.PepperoniTopping;
 import pizza.topping.SausageTopping;
 
+/**
+ * This is the driver class for assembling a pizza
+ */
 public class PizzaMain {
 	private Pizza pizza;
 	private Scanner input;
@@ -165,6 +168,9 @@ public class PizzaMain {
 		System.out.println(pizza.getCrust().checkIntegrity());
 	}
 	
+	/**
+	 * Solicit user inputs regarding pizza preferences
+	 */
 	public void runMenu() {
 		inputCrustChoice();
 		inputSauceChoice();

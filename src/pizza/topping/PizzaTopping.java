@@ -2,6 +2,9 @@ package pizza.topping;
 
 import pizza.MenuItem;
 
+/**
+ * {@code PizzaTopping} represents all possible toppings that can go on a pizza
+ */
 public abstract class PizzaTopping implements MenuItem {
 	public abstract String toString(); 
 	
